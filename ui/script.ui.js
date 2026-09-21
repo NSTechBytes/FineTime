@@ -16,11 +16,13 @@ const COLORS = {
     main: "rgb(25,25,25)",
     accent: "rgb(70,145,245)",
     subtle: "rgba(25,25,25,0.68)",
+    shadow: "rgba(0,0,0,0.16)",
   },
   dark: {
     main: "rgb(247,247,247)",
     accent: "rgb(90,165,255)",
     subtle: "rgba(247,247,247,0.68)",
+    shadow: "rgba(0,0,0,0.48)",
   },
 };
 
@@ -70,6 +72,7 @@ function render() {
     fontWeight: "light",
     fontColor: c.main,
     textAlign: "center-center",
+    fontShadow: { x: 0, y: Math.max(2, 4 * s), blur: 10 * s, color: c.shadow },
   });
   ui.addText({
     id: "colon",
@@ -81,7 +84,7 @@ function render() {
     fontFace: "Segoe UI",
     fontSize: 62 * s,
     fontWeight: "light",
-    fontColor: clock.colonVisible ? c.accent : "rgba(0,0,0,0)",
+    fontColor: c.accent,
     textAlign: "center-center",
   });
   ui.addText({
@@ -96,6 +99,7 @@ function render() {
     fontWeight: "light",
     fontColor: c.main,
     textAlign: "center-center",
+    fontShadow: { x: 0, y: Math.max(2, 4 * s), blur: 10 * s, color: c.shadow },
   });
   ui.addText({
     id: "seconds",
@@ -162,6 +166,20 @@ function render() {
     textAlign: "center-center",
   });
   ui.endUpdate();
+
+  // Keyframe color interpolation produces a continuous fade, rather than a
+  // timer-driven on/off blink. It restarts only when the colon is recreated.
+  ui.animate({
+    id: "colon",
+    duration: 1000,
+    iterationCount: "infinite",
+    easing: "easeInOutSine",
+    keyframes: {
+      "0%": { fontColor: c.accent },
+      "50%": { fontColor: "rgba(70,145,245,0.08)" },
+      "100%": { fontColor: c.accent }
+    }
+  });
 }
 
 function applyClock(data) {
@@ -178,13 +196,10 @@ function applyClock(data) {
       if (typeof data[key] === "string") clock[key] = data[key];
     },
   );
-  if (typeof data.colonVisible === "boolean")
-    clock.colonVisible = data.colonVisible;
   if (rerender) {
     render();
     return;
   }
-  const c = COLORS[theme];
   ui.beginUpdate();
   ui.setElementProperties("hours", { text: clock.hours });
   ui.setElementProperties("minutes", { text: clock.minutes });
@@ -192,9 +207,6 @@ function applyClock(data) {
   ui.setElementProperties("period", { text: use24Hour ? "" : clock.period });
   ui.setElementProperties("date", { text: clock.date });
   ui.setElementProperties("weekday", { text: clock.weekday });
-  ui.setElementProperties("colon", {
-    fontColor: clock.colonVisible ? c.accent : "rgba(0,0,0,0)",
-  });
   ui.endUpdate();
 }
 

@@ -12,7 +12,6 @@ const STORAGE = {
 let scale = 1;
 let theme = "light";
 let use24Hour = true;
-let colonVisible = true;
 let clockWindow = null;
 let timer = null;
 
@@ -48,8 +47,7 @@ function getClockData() {
     period: hours >= 12 ? "PM" : "AM",
     scale: scale,
     theme: theme,
-    use24Hour: use24Hour,
-    colonVisible: colonVisible
+    use24Hour: use24Hour
   };
 }
 
@@ -116,5 +114,5 @@ clockWindow = new widgetWindow({
 clockWindow.setContextMenu(buildContextMenu());
 
 ipcMain.on("FineTime.ready", function () { pushSettings(); });
-timer = setInterval(function () { colonVisible = !colonVisible; publishClock(); }, 500);
+timer = setInterval(publishClock, 1000);
 clockWindow.on("close", function () { if (timer) clearInterval(timer); timer = null; });
