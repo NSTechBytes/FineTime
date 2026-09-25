@@ -6,7 +6,7 @@
   "author": "NSTechBytes",
   "description": "A fine transparent desktop clock with blinking separator, scale, theme, and time-format settings.",
   "icon": "assets/icon.ico",
-  "preview": "defaultPreview.png",
+  "preview": "Preview.png",
   "excludeItems": [],
   "setup": {
     "createDesktopShortcut": true,
