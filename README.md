@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <img src="https://res.cloudinary.com/i8b6ikc3/image/upload/v1790264581/smv6ebiy6hhcjfzrgpgh.png" alt="FineTime preview">
+  <img src="https://res.cloudinary.com/i8b6ikc3/image/upload/v1790302673/gy4sesxtpbzgzxg9npeh.png" alt="FineTime preview">
 </p>
 
 ## About
