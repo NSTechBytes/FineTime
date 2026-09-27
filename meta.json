@@ -1,13 +1,15 @@
 {
   "name": "FineTime",
   "main": "index.js",
-  "version": "1.0.0.0",
+  "version": "1.0",
   "minimumNovadeskVersion": "0.9.11.0",
   "author": "NSTechBytes",
   "description": "A fine transparent desktop clock with blinking separator, scale, theme, and time-format settings.",
   "icon": "assets/icon.ico",
   "preview": "Preview.png",
-  "excludeItems": [],
+    "excludeItems": [
+    ".git","dist"
+  ],
   "setup": {
     "createDesktopShortcut": true,
     "createStartupShortcut": false,

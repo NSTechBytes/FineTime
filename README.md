@@ -43,7 +43,7 @@ The widget includes:
 
 Download the latest widget package (`.ndpkg`) from the project releases:
 
-[Download FineTime_v1.0.0.0.ndpkg](https://github.com/NSTechBytes/FineTime/releases)
+[Download FineTime_v1.0.ndpkg](https://github.com/NSTechBytes/FineTime/releases)
 
 Double-click the downloaded `.ndpkg` file to install it directly with Novadesk. Novadesk must be installed before opening the package.
 
